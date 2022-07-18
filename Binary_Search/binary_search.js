@@ -12,7 +12,7 @@ function binarySearch (arr, item) {
       return mid;
     }
     // If guess is too high
-    if(guess > item) {
+    else if(guess > item) {
       high = mid - 1;
     }
     // If guess is too low
