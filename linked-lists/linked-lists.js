@@ -16,6 +16,7 @@ c.next = d;
 
 // A -> B -> C -> D -> NULL
 
+// Iterative
 const printLL = (head) => {
   let current = head;
   while(current !== null) {
@@ -25,3 +26,11 @@ const printLL = (head) => {
 };
 
 printLL(a);
+
+// Recursive
+const printLLRecursive = (head) => {
+  if(head === null) {
+    console.log(head.val);
+  }
+  printLLRecursive(head.next);
+}
