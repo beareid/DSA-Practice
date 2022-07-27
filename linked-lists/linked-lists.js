@@ -14,7 +14,17 @@ a.next = b;
 b.next = c;
 c.next = d;
 
+const one = new Node(1);
+const two = new Node(2);
+const three = new Node(3);
+const four = new Node(4);
+
+one.next = two;
+two.next = three;
+three.next = four;
+
 // A -> B -> C -> D -> NULL
+// 1 -> 2 -> 3 -> 4 -> NULL
 
 /* 
   Iterative Traversal of a Linked List
@@ -40,8 +50,9 @@ printLL(a);
 */
 const printLLRecursive = (head) => {
   if(head === null) {
-    console.log(head.val);
+    return;
   }
+  console.log(head.val)
   printLLRecursive(head.next);
 };
 
@@ -63,7 +74,7 @@ const linkedListValuesArray = (head) => {
   return arr;
 };
 
-linkedListValuesArray(a);
+console.log(linkedListValuesArray(a));
 
 // Original Implementation of Linked List Values Recursive: adds the nodes of a linked list to an array
 // const linkedListValuesArrayRecursive = (head) => {
@@ -94,3 +105,34 @@ const linkedListValuesArrayRecursive = (head) => {
 };
 
 console.log(linkedListValuesArrayRecursive(a));
+
+/*
+  Sum List: sums up all node values of a linked list
+  n = # of nodes
+  Time Complexity: O(n) -> Iterating through all n nodes
+  Space Complexity: O(1) -> we start primitive values in variables current and sum
+*/
+const sumList = (head) => {
+  let current = head;
+  let sum = 0;
+  while(current !== null) {
+    sum += current.val;
+    current = current.next;
+  }
+  return sum;
+};
+
+console.log(sumList(one));
+
+/*
+  Sum List Recursive: sums up all node values of a linked list
+  n = # of nodes
+  Time Complexity: O(n) -> Iterating through all n nodes
+  Space Complexity: O(n) -> due to the n recursive calls
+*/
+const sumListRecursive = (head) => {
+  if(head === null) return 0;
+  return head.val + sumListRecursive(head.next);
+};
+
+console.log(sumListRecursive(one));
