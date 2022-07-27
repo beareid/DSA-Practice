@@ -16,7 +16,12 @@ c.next = d;
 
 // A -> B -> C -> D -> NULL
 
-// Iterative
+/* 
+  Iterative Traversal of a Linked List
+  n = # of nodes
+  Time Complexity: O(n) -> Iterating through all n nodes
+  Space Complexity: ?
+*/
 const printLL = (head) => {
   let current = head;
   while(current !== null) {
@@ -27,7 +32,12 @@ const printLL = (head) => {
 
 printLL(a);
 
-// Recursive
+/*
+  Recursive Traversal of a Linked List
+  n = # of nodes
+  Time Complexity: O(n) -> Iterating through all n nodes
+  Space Complexity: ?
+*/
 const printLLRecursive = (head) => {
   if(head === null) {
     console.log(head.val);
@@ -38,7 +48,7 @@ const printLLRecursive = (head) => {
 printLLRecursive(a);
 
 /*
-  Linked List Values Iterative
+  Linked List Values Iterative: adds the nodes of a linked list to an array
   n = # of nodes
   Time Complexity: O(n) -> Iterating through all n nodes
   Space Complexity: O(n) -> The output array will be equal to the number of nodes n
@@ -55,7 +65,7 @@ const linkedListValuesArray = (head) => {
 
 linkedListValuesArray(a);
 
-// Original Implementation of Linked List Values Recursive
+// Original Implementation of Linked List Values Recursive: adds the nodes of a linked list to an array
 // const linkedListValuesArrayRecursive = (head) => {
 //   let arr = [];
 //   if(head === null) return;
