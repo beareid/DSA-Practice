@@ -33,4 +33,49 @@ const printLLRecursive = (head) => {
     console.log(head.val);
   }
   printLLRecursive(head.next);
-}
+};
+
+printLLRecursive(a);
+
+/*
+  Linked List Values Iterative
+  n = # of nodes
+  Time Complexity: O(n) -> Iterating through all n nodes
+  Space Complexity: O(n) -> The output array will be equal to the number of nodes n
+*/
+const linkedListValuesArray = (head) => {
+  let current = head;
+  let arr = [];
+  while(current !== null) {
+    arr.push(current.val);
+    current = current.next;
+  }
+  return arr;
+};
+
+linkedListValuesArray(a);
+
+// Original Implementation of Linked List Values Recursive
+// const linkedListValuesArrayRecursive = (head) => {
+//   let arr = [];
+//   if(head === null) return;
+//   arr.push(head.val);
+//   linkedListValuesArrayRecursive(head.next);
+//   return arr;
+// };
+// console.log(linkedListValuesArrayRecursive(a));
+
+// Linked List Values Recursive
+const fillValues = (head, arr) => {
+  if(head === null) return;
+  arr.push(head.val);
+  fillValues(head.next, arr);
+};
+
+const linkedListValuesArrayRecursive = (head) => {
+  let arr = [];
+  fillValues(head, arr);
+  return arr;
+};
+
+console.log(linkedListValuesArrayRecursive(a));
