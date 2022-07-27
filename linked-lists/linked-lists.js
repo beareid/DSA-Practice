@@ -65,7 +65,12 @@ linkedListValuesArray(a);
 // };
 // console.log(linkedListValuesArrayRecursive(a));
 
-// Linked List Values Recursive
+/* 
+  Linked List Values Recursive
+  n = # of nodes
+  Time Complexity: O(n) -> Iterating through all n nodes
+  Space Complexity: O(n) -> The output array will be equal to the number of nodes n
+*/
 const fillValues = (head, arr) => {
   if(head === null) return;
   arr.push(head.val);
