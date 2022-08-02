@@ -32,6 +32,7 @@ three.next = four;
   Time Complexity: O(n) -> Iterating through all n nodes
   Space Complexity: ?
 */
+
 const printLL = (head) => {
   let current = head;
   while(current !== null) {
@@ -48,6 +49,7 @@ printLL(a);
   Time Complexity: O(n) -> Iterating through all n nodes
   Space Complexity: ?
 */
+
 const printLLRecursive = (head) => {
   if(head === null) {
     return;
@@ -64,6 +66,7 @@ printLLRecursive(a);
   Time Complexity: O(n) -> Iterating through all n nodes
   Space Complexity: O(n) -> The output array will be equal to the number of nodes n
 */
+
 const linkedListValuesArray = (head) => {
   let current = head;
   let arr = [];
@@ -92,6 +95,7 @@ console.log(linkedListValuesArray(a));
   Time Complexity: O(n) -> Iterating through all n nodes
   Space Complexity: O(n) -> The output array will be equal to the number of nodes n
 */
+
 const fillValues = (head, arr) => {
   if(head === null) return;
   arr.push(head.val);
@@ -112,6 +116,7 @@ console.log(linkedListValuesArrayRecursive(a));
   Time Complexity: O(n) -> Iterating through all n nodes
   Space Complexity: O(1) -> we start primitive values in variables current and sum
 */
+
 const sumList = (head) => {
   let current = head;
   let sum = 0;
@@ -130,9 +135,127 @@ console.log(sumList(one));
   Time Complexity: O(n) -> Iterating through all n nodes
   Space Complexity: O(n) -> due to the n recursive calls
 */
+
 const sumListRecursive = (head) => {
   if(head === null) return 0;
   return head.val + sumListRecursive(head.next);
 };
 
 console.log(sumListRecursive(one));
+
+/*
+  Linked List Find: returns a boolean based on if a given value is in the linked list
+  n = # of nodes
+  Time Complexity: O(n) -> Iterating through all n nodes
+  Space Complexity: O(1) -> using a constant number of variables
+*/
+
+const linkedListFind = (head, item) => {
+  let current = head;
+  while(current !== null) {
+    if(current.val === item) return true;
+    current = current.next;
+  }
+  return false;
+}; 
+
+console.log(linkedListFind(one, 3)); // true
+console.log(linkedListFind(one, 5)); // false
+
+/*
+  Linked List Find Recursive: returns a boolean based on if a given value is in the linked list
+  n = # of nodes
+  Time Complexity: O(n) -> Iterating through all n nodes
+  Space Complexity: O(n) -> due to the n recursive calls on the call stack; worst case is if our target is not found in the linked list and we have to check every node until the end null
+*/
+
+const linkedListFindRecursive = (head, item) => {
+  if(head === null) return false;
+  if(head.val === item) return true;
+  return linkedListFindRecursive(head.next, item);
+};
+
+console.log(linkedListFindRecursive(one, 1)); // true
+console.log(linkedListFindRecursive(one, 8)); // false
+
+/*
+  Get Node Value: returns the value of a node at a certain index
+  n = # of nodes
+  Time Complexity: O(n) -> Iterating through all n nodes
+  Space Complexity: O(1) -> tracking simple number variables
+*/
+
+const getNodeValueWhile = (head, index) => {
+  let current = head;
+  let count = 0;
+  while(current !== null) {
+      if(count === index) return current.val;
+      count++;
+      current = current.next;
+  }
+  return null;
+};
+
+console.log(getNodeValueWhile(one, 2));
+
+/*
+  Get Node Value Recursive: returns the value of a node at a certain index
+  n = # of nodes
+  Time Complexity: O(n) -> Iterating through all n nodes
+  Space Complexity: O(n) -> storing every call on the call stack
+*/
+
+// With the recursive function instead of counting up we are counting down to index = 0
+const getNodeValueRecursive = (head, index) => {
+  // If the target index is out of range
+  // if the linked list is 4 long but the index is greater than 4
+  if (head === null) return null;
+  if(index === 0) return head.val;
+  return getNodeValueRecursive(head.next, index - 1);
+};
+
+console.log(getNodeValueRecursive(one, 2));
+
+/*
+  Reverse Linked List: reverses linked list
+  n = # of nodes
+  Time Complexity: O(n) -> Iterating through all n nodes
+  Space Complexity: O(1) -> only need a fixed number of variables
+*/
+
+const reverseLL = (head) => {
+  // The variable prev needs to be null so that the original head's next node is null making the orginal head the tail node
+  let prev = null;
+  let current = head;
+  while(current !== null) {
+      /* 
+        The variable next is used to keep track of the current node's original next node when the link is broken
+        Not including next will cause the code to return null if current is reassigned to current.next, since the old head's next node will be null due to prev equaling null
+      */
+      let next = current.next;
+      // Reverses the link
+      current.next = prev;
+      prev = current;
+      current = next;
+}
+// The original tail becomes the head
+return prev.val;
+};
+
+console.log(reverseLL(one));
+
+/*
+  Reverse Linked List Recursive: reverses linked list
+  n = # of nodes
+  Time Complexity: O(n) -> Iterating through all n nodes
+  Space Complexity: O(n) -> storing every call on the call stack
+*/
+
+const reverseLLRecursive = (head, prev = null) => {
+  if(head === null) return prev;
+  let next = head.next;
+  head.next = prev;
+  return reverseRecursive(next, head);
+};
+
+console.log(reverseLLRecursive(one));
