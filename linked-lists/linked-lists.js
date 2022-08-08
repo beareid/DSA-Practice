@@ -255,7 +255,7 @@ const reverseLLRecursive = (head, prev = null) => {
   if(head === null) return prev;
   let next = head.next;
   head.next = prev;
-  return reverseRecursive(next, head);
+  return reverseLLRecursive(next, head);
 };
 
 console.log(reverseLLRecursive(one));
