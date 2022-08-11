@@ -259,3 +259,61 @@ const reverseLLRecursive = (head, prev = null) => {
 };
 
 console.log(reverseLLRecursive(one));
+
+/*
+  Zipper Lists: combines linked list
+  n = # of nodes for list 1
+  m = # of nodes for list 2
+  Time Complexity: O(min(n,m)) -> We only need as many iterations as the shorter linked list
+  Space Complexity: O(1) -> We are only rerouting next pointers and using a fixed number of variables
+*/
+
+const zipperLists = (head1, head2) => {
+  let tail = head1;
+  let current1 = head1.next;
+  let current2 = head2;
+  let count = 0;
+
+  while(current1 !== null && current2 !== null) {
+    if(count%2 === 0) {
+      // let next = current2.next;
+      tail.next = current2;
+      current2 = current2.next;
+    }
+    else {
+      // let next = current1.next;
+      tail.next = current1;
+      current1 = current1.next;
+    }
+    tail = tail.next;
+    count += 1;
+  }
+
+  if(current1 !== null) tail.next = current1;
+  if(current2 !== null) tail.next = current2;
+
+  return head1;
+};
+
+console.log(zipperLists(one, a));
+
+/*
+  Zipper Lists Recursive: combines linked list
+  n = # of nodes for list 1
+  m = # of nodes for list 2
+  Time Complexity: O(n) -> 
+  Space Complexity: O(n) -> 
+*/
+
+const zipperListsRecursive = (head1, head2) => {
+  if(head1 === null && head2 === null) return null;
+  if(head1 === null) return head2;
+  if(head2 === null) return head1;
+  const next1 = head1.next;
+  const next2 = head2.next;
+  head1.next = head2;
+  head2.next = zipperListsRecursive(next1, next2);
+  return head1;
+}
+
+console.log(zipperListsRecursive(one, a));
