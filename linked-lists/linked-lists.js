@@ -301,8 +301,8 @@ console.log(zipperLists(one, a));
   Zipper Lists Recursive: combines linked list
   n = # of nodes for list 1
   m = # of nodes for list 2
-  Time Complexity: O(n) -> 
-  Space Complexity: O(n) -> 
+  Time Complexity: O(min(n,m)) -> We only need as many iterations as the shorter linked list
+  Space Complexity: O(min(n,m)) -> Storing every call equal to the size of the shorter linked list on the call stack
 */
 
 const zipperListsRecursive = (head1, head2) => {
@@ -317,3 +317,150 @@ const zipperListsRecursive = (head1, head2) => {
 }
 
 console.log(zipperListsRecursive(one, a));
+
+/*
+  Merge Lists: merge linked list
+  n = # of nodes for list 1
+  m = # of nodes for list 2
+  Time Complexity: O(min(n,m)) -> We only need as many iterations as the shorter linked list
+  Space Complexity: O(1) -> We are only rerouting next pointers and using a fixed number of variables
+*/
+
+const mergeLists = (head1, head2) => {
+  let dummyHead = new Node(null);
+  let tail = dummyHead;
+  let current1 = head1;
+  let current2 = head2;
+
+  while(current1 !== null && current2 !== null) {
+    if(current1.val < current2.val) {
+      tail.next = current1;
+      current1 = current1.next;
+    }
+    else {
+      tail.next = current2;
+      current2 = current2.next;
+    }
+    tail = tail.next;
+  }
+  
+  if(current1 !== null) tail.next = current1;
+  if(current2 !== null) tail.next = current2;
+  
+  return dummyHead.next;
+};
+
+console.log(mergeLists(one, a));
+
+/*
+  Merge Lists Recursive: merge linked list
+  n = # of nodes for list 1
+  m = # of nodes for list 2
+  Time Complexity: O(min(n,m)) -> We only need as many iterations as the shorter linked list
+  Space Complexity: O(min(n,m)) -> Storing every call equal to the size of the shorter linked list on the call stack
+*/
+
+const mergeListsRecursive = (head1, head2) => {
+  if(head1 === null && head2 === null) return null;
+  if(head1 === null) return head2;
+  if(head2 === null) return head1;
+  if(head1.val < head2.val) {
+    const next1 = head1.next;
+    head1.next = mergeListsRecursive(next1, head2);
+    return head1;
+  } else {
+    const next2 = head2.next;
+    head1.next = mergeListsRecursive(head1, next2);
+    return head2;
+  }
+};
+
+console.log(mergeListsRecursive(one, a));
+
+/*
+  Univalue: does the linked list contain a single unique value
+  n = # of nodes
+  Time Complexity: O(n) -> Iterating through all n nodes
+  Space Complexity: O(1) -> Using a constant number of variables
+*/
+
+const isUnivalueList = (head) => {
+  let current = head;
+  while(current !== null) {
+    if(current.val !== head.val) return false;
+    current = current.next;
+  }
+  return true;
+};
+
+console.log(isUnivalueList(one));
+
+/*
+  Univalue Recursive: does the linked list contain a single unique value
+  n = # of nodes
+  Time Complexity: O(n) -> Iterating through all n nodes
+  Space Complexity: O(n) -> storing every call on the call stack
+*/
+
+const isUnivalueListRecursive = (head, prevVal = null) => {
+  if(head === null) return true;
+  if(preVal !== null && head.val !== prevVal) return false;
+  return isUnivalueListRecursive(head.next, haed.val);
+};
+
+console.log(isUnivalueListRecursive(one));
+
+/*
+  Longest Streak: length of the longest consecutive streak
+  n = # of nodes
+  Time Complexity: O(n) -> Iterating through all n nodes
+  Space Complexity: O(1) -> Using a constant number of variables
+*/
+
+// First Attempt
+// const longestStreak = (head) => {
+//   let n1 = head;
+//   let n2 = head;
+//   let count = 0;
+//   let streak = 0;
+//   while(n1 !== null){
+//       if(n1.val === n2.val) {
+//           count += 1;
+//           n1 = n1.next;
+//       } 
+//       else {
+//           if(streak < count) {
+//               streak = count;
+//           }
+//           count = 0;
+//           n2 = n2.next;
+//       }
+//   }
+//   return Math.max(streak, count);
+// };
+
+// console.log(longestStreak(null));
+
+const longestStreak = (head) => {
+  let currentStreak = 0;
+  let maxStreak = 0;
+  let current = head;
+  let prev = null;
+  while(current !== null) {
+    if(current.val === prev) {
+      currentStreak += 1;
+    }
+    else {
+      currentStreak = 1;
+    }
+
+    if(maxStreak < currentStreak) {
+      maxStreak = currentStreak;
+    }
+    prev = current.val;
+    current = current.next;
+  }
+  return maxStreak;
+};
+
+console.log(longestStreak(one));
