@@ -97,6 +97,7 @@ console.log(linkedListValuesArray(a));
 */
 
 const fillValues = (head, arr) => {
+  // In this case just return. Nothing needs to be pushed.
   if(head === null) return;
   arr.push(head.val);
   fillValues(head.next, arr);
@@ -210,6 +211,7 @@ const getNodeValueRecursive = (head, index) => {
   // If the target index is out of range
   // if the linked list is 4 long but the index is greater than 4
   if (head === null) return null;
+  // If index is equal to the head node.
   if(index === 0) return head.val;
   return getNodeValueRecursive(head.next, index - 1);
 };
@@ -239,7 +241,7 @@ const reverseLL = (head) => {
       current = next;
 }
 // The original tail becomes the head
-return prev.val;
+return prev;
 };
 
 console.log(reverseLL(one));
@@ -399,7 +401,7 @@ console.log(isUnivalueList(one));
   Univalue Recursive: does the linked list contain a single unique value
   n = # of nodes
   Time Complexity: O(n) -> Iterating through all n nodes
-  Space Complexity: O(n) -> storing every call on the call stack
+  Space Complexity: O(n) -> Storing every call on the call stack
 */
 
 const isUnivalueListRecursive = (head, prevVal = null) => {
@@ -464,3 +466,146 @@ const longestStreak = (head) => {
 };
 
 console.log(longestStreak(one));
+
+/*
+  Remove Node: removes node from linked list
+  n = # of nodes
+  Time Complexity: O(n) -> Iterating through all n nodes
+  Space Complexity: O(1) -> Using a constant number of variables
+*/
+
+const removeNode = (head, target) => {
+  // Used for edge case: remove head
+  if(head.val === target) return head.next;
+
+  /* Did not need bool
+     let bool;
+  */
+
+  // Works for edge case: remove tail
+  let current = head;
+  let prev = null;
+  while(current !== null) {
+      if(current.val === target) {
+
+          /* 
+            Did not need to save current.next or assign a null value to it
+            next = current.next;
+            current.next = null;
+          */
+
+          prev.next = current.next;
+
+          /* 
+            Did not need bool
+            bool = true;
+          */
+
+          // breaks out of the while loop
+          break;
+      }
+      prev = current;
+      current = current.next;
+  }
+  return head;
+};
+
+console.log(removeNode(one, 3));
+
+/*
+  Remove Node: removes node from linked list
+  n = # of nodes
+  Time Complexity: O(n) -> Iterating through all n nodes
+  Space Complexity: O(1) -> Storing every call on the call stack
+*/
+
+const removeNodeRecursive = (head, target) => {
+
+};
+
+/*
+  Add Node: add node to linked list
+  n = # of nodes
+  Time Complexity: O(n) -> Iterating through all n nodes
+  Space Complexity: O(1) -> Using a constant number of variables
+*/
+
+const insertNode = (head, value, index) => {
+  // Used for edge case: add to head
+  if(index === 0) {
+    const newHead = new Node(value);
+    newHead.next = head;
+    return newHead;
+  }
+
+  let count = 0;
+  let current = head;
+  /*
+    Did not need prev variable
+    let prev = null;
+
+    The below function does not work for a node added at the end/tail of the linked list
+    Current gets to null before the newNode can be added to the end
+
+    1 -> 2 -> 3 -> null
+              prev current
+
+    while(current !== null) {
+      if(count === index) {
+        const newNode = new Node(value);
+        newNode.next = current;
+        prev.next = newNode;
+      }
+      count += 1;
+      prev = current;
+      current = current.next;
+    }
+  */
+
+  // Used for edge case: add to end/tail
+  while(current !== null) {
+    // 
+    if(count === index - 1) {
+      const newNode = new Node(value);
+      next = current.next;
+      current.next = newNode;
+      current.next.next = next;
+    }
+    count += 1;
+    current = current.next;
+  }
+  
+  return head;
+};
+
+console.log(insertNode(one, 7, 3));
+
+/*
+  Add Node Recursive: add node to linked list
+  n = # of nodes
+  Time Complexity: O(n) -> Iterating through all n nodes
+  Space Complexity: O(1) -> Using a constant number of variables
+*/
+
+const insertNodeRecursive = (head, value, index) => {
+ 
+};
+
+/*
+  Create Linked List: create linked list from array
+  n = # of nodes
+  Time Complexity: O(n) -> Iterating through all n nodes
+  Space Complexity: O(n) -> 
+*/
+
+const createLinkedList = (values) => {
+  const dummyHead = new Node(null);
+  let tail = dummyHead;
+  for(let val of values) {
+    tail.next = new Node(val);
+    tail = tail.next;
+  }
+  return dummyHead.next;
+};
+
+console.log(createLinkedList(['a', 'b', 'c']));
