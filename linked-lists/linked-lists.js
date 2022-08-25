@@ -609,3 +609,34 @@ const createLinkedList = (values) => {
 };
 
 console.log(createLinkedList(['a', 'b', 'c']));
+
+/*
+  Create Linked List Recursive: create linked list from array
+  n = # of nodes
+  Time Complexity: O(n) -> Iterating through all n nodes
+  Space Complexity: O(n) -> 
+*/
+
+const createLinkedListRecursive = (values) => {
+  
+};
+
+console.log(createLinkedListRecursive(['a', 'b', 'c']));
+
+/*
+  Add Linked Lists: add linked lists
+  n = # of nodes
+  Time Complexity: O(n) -> Iterating through all n nodes
+  Space Complexity: O(n) -> 
+*/
+/*
+  Scenario 1: The LLs are the same length
+  Scenario 2: The LLs are diff lengths
+*/
+
+/*
+  Add Linked Lists Recursive: add linked lists
+  n = # of nodes
+  Time Complexity: O(n) -> Iterating through all n nodes
+  Space Complexity: O(n) -> 
+*/
