@@ -625,14 +625,18 @@ console.log(createLinkedListRecursive(['a', 'b', 'c']));
 
 /*
   Add Linked Lists: add linked lists
+  - Scenario 1: The LLs are the same length
+  - Scenario 2: The LLs are diff lengths
+  - Scenario 3: Handling a carry over
+  - Scenario 4: Handling a final carry over
   n = # of nodes
   Time Complexity: O(n) -> Iterating through all n nodes
   Space Complexity: O(n) -> 
 */
-/*
-  Scenario 1: The LLs are the same length
-  Scenario 2: The LLs are diff lengths
-*/
+
+const addLists = (head1, head2) => {
+
+};
 
 /*
   Add Linked Lists Recursive: add linked lists
@@ -640,3 +644,34 @@ console.log(createLinkedListRecursive(['a', 'b', 'c']));
   Time Complexity: O(n) -> Iterating through all n nodes
   Space Complexity: O(n) -> 
 */
+
+const addListsRecursive = (head1, head2, carry = 0) => {
+  if(head1 === null && head2 === null && carry === 0) return null;
+
+  /* 
+    If head is null (reached end of list) val is assigned  0
+    Ex:   7 -> 4 -> 1        7 -> 4 -> 1
+        + 4 -> 2       --->  4 -> 2 -> 0
+    If head is not null assign the value at head
+  */
+  const val1 = head1 === null ? 0 : head1.val;
+  const val2 = head2 === null ? 0 : head2.val;
+
+  // Adds up values in both heads and the carry value
+  const sum = val1 + val2 + carry;
+  // If sum is greater than 9 carry is assigned 1 if it is less than 9 then it is assigned 0
+  const nextCarry = sum > 9 ? 1 : 0;
+  // The digit that will be assigned to the node value
+  const digit = sum % 10;
+  // New node with digit as value
+  const resultNode = new Node(digit);
+
+  // If head is null then next is assigned null, otherwise next is assigned to head's next node
+  const next1 = head1 === null ? null : head1.next;
+  const next2 = head2 === null ? null : head2.next;
+
+  // 
+  resultNode.next = addLists(next1, next2, nextCarry);
+
+  return resultNode;
+};
