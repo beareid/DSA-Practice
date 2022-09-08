@@ -47,7 +47,7 @@ printLL(a);
   Recursive Traversal of a Linked List
   n = # of nodes
   Time Complexity: O(n) -> Iterating through all n nodes
-  Space Complexity: ?
+  Space Complexity: O(n) -> due to the n recursive calls
 */
 
 const printLLRecursive = (head) => {
@@ -329,6 +329,7 @@ console.log(zipperListsRecursive(one, a));
 */
 
 const mergeLists = (head1, head2) => {
+  // WHY?
   let dummyHead = new Node(null);
   let tail = dummyHead;
   let current1 = head1;
@@ -513,10 +514,10 @@ const removeNode = (head, target) => {
 console.log(removeNode(one, 3));
 
 /*
-  Remove Node: removes node from linked list
+  Remove Node Recursive: removes node from linked list
   n = # of nodes
   Time Complexity: O(n) -> Iterating through all n nodes
-  Space Complexity: O(1) -> Storing every call on the call stack
+  Space Complexity: O() -> Storing every call on the call stack
 */
 
 const removeNodeRecursive = (head, target) => {
@@ -584,7 +585,7 @@ console.log(insertNode(one, 7, 3));
   Add Node Recursive: add node to linked list
   n = # of nodes
   Time Complexity: O(n) -> Iterating through all n nodes
-  Space Complexity: O(1) -> Using a constant number of variables
+  Space Complexity: O() -> 
 */
 
 const insertNodeRecursive = (head, value, index) => {
