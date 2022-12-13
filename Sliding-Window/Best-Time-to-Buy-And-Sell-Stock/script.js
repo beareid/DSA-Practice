@@ -1,5 +1,5 @@
 /*
-  Two Pointers; Sliding Window
+  Two Pointers: Sliding Window
 
   Left Pointer = Day that we buy
   Right Pointer = Day that we sell
