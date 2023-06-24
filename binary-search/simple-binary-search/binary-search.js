@@ -8,7 +8,6 @@ const list = [1,3,4,7,11,12,15,22];
 const arr = ['a', 'b', 'c', 'x', 'y', 'z'];
 
 // Iterative Implementation: Time Complexity -> O(logn) & Space Complexity O(1) 
-
 var binarySearchIterative = function(arr, target) {
 
   let start = 0;
@@ -43,7 +42,6 @@ console.log(binarySearchIterative(arr, 'z'));
 console.log(binarySearchIterative(arr, 'w'));
 
 // Recursive Implementation: Time Complexity -> O(logn) & Space Complexity O(logn)
-
 const binarySearchRecursive = function(arr, target, start=0, end=arr.length - 1) {
   if(start > end) return -1;
 

@@ -1,6 +1,6 @@
 /* 
-  Uncompress: takes in a string as an argument. The input string will be formatted into multiple groups according to the following pattern: <number><char> for example, '2c' or '3a'
-  Can not discribe the Big O complexity just by using the length of the input string.
+  Uncompressed: takes in a string as an argument. The input string will be formatted into multiple groups according to the following pattern: <number><char> for example, '2c' or '3a'
+  Can not describe the Big O complexity just by using the length of the input string.
   n = # of groups (Ex: for 1000p10000q -> 2 would be n)
   m = max # for any group (Ex: for 1000p10000q -> 10000 would be m)
   Time Complexity: O(n*m): 
@@ -41,7 +41,7 @@ console.log(uncompress('3n12e2z'));
 
 /* 
   Compress: takes in a string as an argument. The input string will be formatted into multiple groups according to the following pattern: <number><char> for example, '2c' or '3a'
-  Can not discribe the Big O complexity just by using the length of the input string.
+  Can not describe the Big O complexity just by using the length of the input string.
   n = # of groups (Ex: for 1000p10000q -> 2 would be n)
   m = max # for any group (Ex: for 1000p10000q -> 10000 would be m)
   Time Complexity: O(n*m): 
